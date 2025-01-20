@@ -33,7 +33,11 @@ morgan.token('host', function(req, res) {
     return req.hostname
 })
 
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
+// create a custom token to log the request body
+morgan.token('body', (req) => JSON.stringify(req.body))
+
+// use morgan middleware with custom token
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
 morgan.token('param', function(req, res, param) {
     return req.params[param]
