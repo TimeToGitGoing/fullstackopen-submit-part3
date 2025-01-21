@@ -1,7 +1,2 @@
-POST http://localhost:3001/api/persons
+DELETE http://localhost:3001/api/persons/1
 Content-type: application/json
-
-{
-    "content": "VS code rest client is a pretty handy tool",
-    "important": true
-}
