@@ -9,8 +9,7 @@ const password = process.argv[2]
 const namePerson = process.argv[3]
 const numberPerson = process.argv[4]
 
-const url =
-    `mongodb+srv://iamanotherday:${password}@cluster0.ycr6j.mongodb.net/person?retryWrites=true&w=majority&appName=Cluster0`
+const url = process.env.MONGODB_URI
 
 mongoose.set('strictQuery',false)
 
@@ -24,8 +23,8 @@ const personSchema = new mongoose.Schema({
 const Person = mongoose.model('Person', personSchema)
 
 const person = new Person({
-name: namePerson,
-number: numberPerson,
+    name: namePerson,
+    number: numberPerson,
 })
 
 if (person.name === undefined ) {
