@@ -56,14 +56,21 @@ app.get('/api/persons', (request, response) => {
 })
 
 app.get('/info', (request, response) => {
-    const detailsReceived = new Date().toString()
-    response.send(`<p>Phonebook has info for ${persons.length} people</p><p>${detailsReceived}</p>`)
+    Person.countDocuments({})
+        .then(count => {
+            const detailsReceived = new Date().toString()
+            response.send(`<p>Phonebook has info for ${count} people</p><p>${detailsReceived}</p>`)
+        })
+        .catch(error => {
+            console.error('Error fetching person count', error.message)
+            response.status(500).send({ error: 'Failed to fetch person count'})
+        })
 })
 
 app.get('/api/persons/:id', (request, response, next) => {
     Person.findById(request.params.id)
         .then(person => {
-            if (note) {
+            if (person) {
                 response.json(person)
             } else {
                 response.status(404).end()
