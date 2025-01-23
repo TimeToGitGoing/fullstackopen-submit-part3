@@ -1,2 +1,3 @@
-GET http://localhost:3001/api/persons/
+GET http://localhost:3001/api/persons/invalidid
+
 Content-type: application/json
