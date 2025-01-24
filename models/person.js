@@ -13,6 +13,7 @@ mongoose.connect(url)
     console.log('error connecting to MongoDB:', error.message)
   })
 
+// used regexp for validation
 const personSchema = new mongoose.Schema({
   name: {
     type: String,
